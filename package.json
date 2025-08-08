@@ -1,0 +1,23 @@
+{
+  "name": "proxy-for-me",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "repository": "https://github.com/kellsthepenguin/proxy-for-me.git",
+  "author": "kells <jwkim101201@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsnd ."
+  },
+  "devDependencies": {
+    "@types/http-proxy": "^1.17.16",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  }
+}
