@@ -1,4 +1,8 @@
 {
+  "auth": {
+    "id": "dandelions",
+    "pw": "1234"
+  },
   "fallback": "http://example.com",
   "port": 8080,
   "rules": {
