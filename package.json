@@ -11,13 +11,17 @@
     "dev": "tsnd ."
   },
   "devDependencies": {
-    "@types/http-proxy": "^1.17.16",
+    "@types/express": "^5.0.3",
+    "@types/express-http-proxy": "^1.6.7",
+    "@types/jsonwebtoken": "^9.0.10",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "http-proxy": "^1.18.1"
+    "express": "^5.1.0",
+    "express-http-proxy": "^2.1.1",
+    "jsonwebtoken": "^9.0.2"
   }
 }

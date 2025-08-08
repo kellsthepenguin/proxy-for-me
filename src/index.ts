@@ -1,5 +1,9 @@
-import { createServer } from 'http'
-import { createProxyServer } from 'http-proxy'
+import express from 'express'
+import proxy from 'express-http-proxy'
+import { readFileSync } from 'fs'
+
+import jwt from 'jsonwebtoken'
+
 import _settings from '../settings.json'
 
 interface Settings {
@@ -13,21 +17,19 @@ interface Settings {
   }
 }
 
-const proxy = createProxyServer()
-const server = createServer()
+const app = express()
 
 const settings = _settings as Settings
+// const secret = readFileSync('./private.key')
 
-server.on('request', (req, res) => {
-  const fullHost = req.headers.host || ''
-  const hostname = new URL(`http://${fullHost}`).hostname
-  const rule = settings.rules[hostname]
-  const target = rule == undefined ? settings.fallback : rule.dest
+app.use(
+  '/*path',
+  proxy((req) => {
+    const rule = settings.rules[req.hostname]
+    const target = rule == undefined ? settings.fallback : rule.dest
 
-  proxy.web(req, res, {
-    target,
-    headers: { host: new URL(target).hostname }
+    return target
   })
-})
+)
 
-server.listen(settings.port)
+app.listen(settings.port)
