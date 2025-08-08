@@ -1,0 +1,10 @@
+{
+  "fallback": "http://example.com",
+  "port": 8080,
+  "rules": {
+    "media.example.com": {
+      "dest": "example.com:5000",
+      "login": false
+    }
+  }
+}
