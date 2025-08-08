@@ -45,8 +45,6 @@ app.post('/login', (req, res) => {
     })
     const { to } = req.query
 
-    console.log(req.query)
-
     if (to) {
       return res.send(
         `<script>alert('Login Successful!');location.href='${to}'</script>`
@@ -61,12 +59,15 @@ app.post('/login', (req, res) => {
 
 app.use((req, res, next) => {
   if (req.path.startsWith('/static')) return next()
+  const rule = settings.rules[req.hostname]
+  if (rule.login) {
+    const token = req.cookies.token_proxyforme
 
-  const token = req.cookies.token_proxyforme
-  try {
-    jwt.verify(token, secret)
-  } catch (_) {
-    return res.redirect('/static/login_pfm.html?to=' + req.path)
+    try {
+      jwt.verify(token, secret)
+    } catch (_) {
+      return res.redirect('/static/login_pfm.html?to=' + req.path)
+    }
   }
 
   return proxy((req) => {
